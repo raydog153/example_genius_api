@@ -1,0 +1,20 @@
+<%= turbo_stream.update "content_songs" do %>
+  <hr>
+
+  <div class="m-3">
+    <% if @songs.present? %>
+      <% @songs.each do |song| %>
+        <%= "#{song.title}" %>
+        <br>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
+<%= turbo_stream.update "error_handling" do %>
+  <% if @songs.blank? %>
+    <div class="alert alert-secondary m-3" role="alert">
+      <%= I18n.t("errors.no_songs") %>
+    </div>
+  <% end %>
+<% end %>
