@@ -21,6 +21,13 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should get no songs by blank artist" do
+    VCR.use_cassette("songs") do
+      get fetch_artist_songs_path, params: {format: "turbo_stream", artist: ""}
+      assert_response :success
+    end
+  end
+
   test "should handle auth failures with invalid token" do
     genius_api = Genius::Song
     error = ->(params) { raise Genius::AuthenticationError.new }
