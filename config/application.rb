@@ -32,6 +32,6 @@ module ExampleGeniusApi3
     # config.eager_load_paths << Rails.root.join("extras")
 
     Genius.text_format = "html"
-    Genius.access_token  = ENV['GENIUS_API_ACCESS_TOKEN']
+    Genius.access_token  = ENV['GENIUS_ACCESS_TOKEN']
   end
 end

@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.genius.com/search?q=Peter%20Gabriel&text_format=html
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer
+      User-Agent:
+      - genius.rb v0.1.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Mon, 23 Jan 2023 03:12:47 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '134'
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 78dd59870d68f371-ATL
+      Via:
+      - 1.1 vegur
+      Www-Authenticate:
+      - Bearer realm="Rack::OAuth2", error="invalid_token", error_description="The
+        access token provided is expired, revoked, malformed or invalid for other
+        reasons."
+      Cf-Cache-Status:
+      - DYNAMIC
+      Status:
+      - 401 Unauthorized
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The access token provided
+        is expired, revoked, malformed or invalid for other reasons."}'
+  recorded_at: Mon, 23 Jan 2023 03:12:47 GMT
+recorded_with: VCR 6.1.0

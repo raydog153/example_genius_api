@@ -1,12 +1,14 @@
 <%= turbo_stream.update "content_songs" do %>
   <hr>
-
   <div class="m-3">
     <% if @songs.present? %>
-      <% @songs.each do |song| %>
-        <%= "#{song.title}" %>
-        <br>
-      <% end %>
+      <p><%= t("input_labels.song_list", count: @songs.count, artist: params[:artist]) %></p>
+      <div class="m-3">
+        <% @songs.each do |song| %>
+          <%= "#{song.title} (#{song.primary_artist.name})" %>
+          <br>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -17,4 +19,5 @@
       <%= I18n.t("errors.no_songs") %>
     </div>
   <% end %>
+  <%= render "layouts/loading" %>
 <% end %>

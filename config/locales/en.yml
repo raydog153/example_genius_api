@@ -30,5 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  input_labels:
+    artist: "Please enter artist name:"
+    song_list: "List of %{count} songs by %{artist}:"
   errors:
     no_songs: We are sorry, we could not find any songs by that artist.
+    access_token_blank: Your access token is blank, please check...
+    access_token_invalid: Your access token is invalid, please check...
