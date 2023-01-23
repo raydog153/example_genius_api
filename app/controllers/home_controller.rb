@@ -39,7 +39,8 @@ class HomeController < ApplicationController
 
     # lets find all songs by this artist
     loop do
-      songs = artist.songs(params: {per_page: 20, page: (page += 1)})
+      Rails.logger.info("Fetching songs for #{artist.name}, page #{page + 1} ")
+      songs = artist.songs(params: {per_page: 50, page: (page += 1)})
       songs_by_artist += songs.select do |song|
         # Only add songs if the artist name matches up
         song.primary_artist.name == artist.name
@@ -59,7 +60,8 @@ class HomeController < ApplicationController
 
     # Use search API to find all songs by artist
     loop do
-      songs = Genius::Song.search(artist, params: {per_page: 20, page: (page += 1)})
+      Rails.logger.info("Fetching songs for #{artist}, page #{page + 1} ")
+      songs = Genius::Song.search(artist, params: {per_page: 50, page: (page += 1)})
       songs_by_artist += songs.select do |song|
         # Only add songs if the artist name matches up
         song.primary_artist.name.downcase == artist
