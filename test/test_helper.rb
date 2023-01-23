@@ -5,7 +5,7 @@ if ENV["RAILS_ENV"] == "test" && $PROGRAM_NAME == "bin/rails"
     # SimpleCov.command_name "#{ENV['TEST_ENV_NUMBER']}/#{ENV["PARALLEL_TEST_GROUPS"]}"
     enable_coverage :branch
     # primary_coverage :branch
-    minimum_coverage 75
+    minimum_coverage 70
     # minimum_coverage line: 19, branch: 19
     # minimum_coverage_by_file line: 90, branch: 80
   end

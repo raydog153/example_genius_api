@@ -45,8 +45,6 @@ class HomeController < ApplicationController
         song.primary_artist.name == artist.name
       end
 
-      puts songs.count
-
       # Ideally we should break if count is less that per_page,
       # however for some reason often API pages are not always full
       break if songs.count == 0
@@ -66,8 +64,6 @@ class HomeController < ApplicationController
         # Only add songs if the artist name matches up
         song.primary_artist.name.downcase == artist
       end
-
-      puts songs.count
 
       # Ideally we should break if count is less than per_page,
       # however for some reason often API pages are not always full
