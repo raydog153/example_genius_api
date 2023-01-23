@@ -13,7 +13,7 @@
   </div>
 
 <% end %>
-<%= turbo_stream.update "error_handling" do %>
+<%= turbo_stream.update "error_messages" do %>
   <% if @songs.blank? %>
     <div class="alert alert-secondary m-3" role="alert">
       <%= I18n.t("errors.no_songs") %>

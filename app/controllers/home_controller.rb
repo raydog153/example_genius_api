@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     # Make sure we have valid params
     if params[:artist].blank?
       @error_message = I18n.t("errors.artist_blank")
-      render "layouts/auth_error" and return
+      render "layouts/error_messages" and return
     end
 
     # Get songs by artist
@@ -21,7 +21,7 @@ class HomeController < ApplicationController
       I18n.t("errors.access_token_invalid")
     end
     Rails.logger.error("Auth error encountered. Error: #{e.message}")
-    render "layouts/auth_error"
+    render "layouts/error_messages"
   end
 
   private
@@ -48,6 +48,7 @@ class HomeController < ApplicationController
     loop do
       Rails.logger.info("Fetching songs for #{artist.name}, page #{page + 1} ")
       songs = artist.songs(params: {per_page: 50, page: (page += 1)})
+      Rails.logger.info("Fetched #{songs.count} songs for #{artist.name}")
       songs_by_artist += songs.select do |song|
         # Only add songs if the artist name matches up
         song.primary_artist.name == artist.name
