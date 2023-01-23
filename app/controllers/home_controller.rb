@@ -8,12 +8,13 @@ class HomeController < ApplicationController
     # @songs = artist_songs_by_search
 
     render "home/song_list"
-  rescue Genius::AuthenticationError
+  rescue Genius::AuthenticationError => e
     @error_message = if Genius.access_token.blank?
       I18n.t("errors.access_token_blank")
     else
       I18n.t("errors.access_token_invalid")
     end
+    Rails.logger.error("Auth error encountered. Error: #{e.message}")
     render "layouts/auth_error"
   end
 
