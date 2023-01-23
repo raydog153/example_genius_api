@@ -1,12 +1,14 @@
 <div class="m-3" data-controller="home" data-href="<%= fetch_artist_songs_path %>">
-    <div class="form-group">
-      <%= label_tag :artist, "Please enter artist name:", class: "col-form-label" %>
-      <%= text_field_tag :artist, nil, class: "form-control", data: {"home-target": "artist"}, required: true %>
-    </div>
-    <button type="submit" class="btn btn-primary mt-3" data-home-target="submit">Search</button>
+  <div class="form-group">
+    <%= label_tag :artist, t("input_labels.artist"), class: "col-form-label" %>
+    <%= text_field_tag :artist, nil, class: "form-control", data: {"home-target": "artist"}, required: true %>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3" data-home-target="submit">Search</button>
+
 </div>
 
 <%= turbo_frame_tag "error_handling" do %>
+  <%= render "layouts/loading" %>
 <% end %>
 <%= turbo_frame_tag "content_songs" do %>
   <hr>
