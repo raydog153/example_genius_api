@@ -5,7 +5,7 @@
       <p><%= t("input_labels.song_list", count: @songs.count, artist: params[:artist]) %></p>
       <div class="m-3">
         <% @songs.each do |song| %>
-          <%= "#{song.title} (#{song.primary_artist.name})" %>
+          <%= "#{song.title}" %>
           <br>
         <% end %>
       </div>

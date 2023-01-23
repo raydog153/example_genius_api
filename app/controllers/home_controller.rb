@@ -3,9 +3,15 @@ class HomeController < ApplicationController
   end
 
   def fetch_artist_songs
+    # Make sure we have valid params
+    if params[:artist].blank?
+      @error_message = I18n.t("errors.artist_blank")
+      render "layouts/auth_error" and return
+    end
+
+    # Get songs by artist
     # Two different approaches were found, leaving both in for discussion on both ways...
     @songs = artist_songs_by_artist_id
-    # @songs = artist_songs_by_search
 
     render "home/song_list"
   rescue Genius::AuthenticationError => e
@@ -54,27 +60,27 @@ class HomeController < ApplicationController
     songs_by_artist
   end
 
-  def artist_songs_by_search
-    songs_by_artist = []
-    page = 0
-    artist = params[:artist].downcase
-
-    # Use search API to find all songs by artist
-    loop do
-      Rails.logger.info("Fetching songs for #{artist}, page #{page + 1} ")
-      songs = Genius::Song.search(artist, params: {per_page: 50, page: (page += 1)})
-      songs_by_artist += songs.select do |song|
-        # Only add songs if the artist name matches up
-        song.primary_artist.name.downcase == artist
-      end
-
-      # Ideally we should break if count is less than per_page,
-      # however for some reason often API pages are not always full
-      break if songs.count == 0
-    end
-
-    # Sort sing list and return
-    songs_by_artist.sort_by { |song| song.title }
-  end
+  # def artist_songs_by_search
+  #   songs_by_artist = []
+  #   page = 0
+  #   artist = params[:artist].downcase
+  #
+  #   # Use search API to find all songs by artist
+  #   loop do
+  #     Rails.logger.info("Fetching songs for #{artist}, page #{page + 1} ")
+  #     songs = Genius::Song.search(artist, params: {per_page: 50, page: (page += 1)})
+  #     songs_by_artist += songs.select do |song|
+  #       # Only add songs if the artist name matches up
+  #       song.primary_artist.name.downcase == artist
+  #     end
+  #
+  #     # Ideally we should break if count is less than per_page,
+  #     # however for some reason often API pages are not always full
+  #     break if songs.count == 0
+  #   end
+  #
+  #   # Sort sing list and return
+  #   songs_by_artist.sort_by { |song| song.title }
+  # end
 
 end
