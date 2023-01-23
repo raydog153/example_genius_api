@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.genius.com/search?q=Peter%20Gabriel&text_format=html
+    uri: https://api.genius.com/search?q=Peter%20Gabriel&text_format=plain
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Mon, 23 Jan 2023 03:12:47 GMT
+      - Mon, 23 Jan 2023 15:45:02 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - keep-alive
       Cf-Ray:
-      - 78dd59870d68f371-ATL
+      - 78e1a7788967ad83-ATL
       Via:
       - 1.1 vegur
       Www-Authenticate:
@@ -48,5 +48,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The access token provided
         is expired, revoked, malformed or invalid for other reasons."}'
-  recorded_at: Mon, 23 Jan 2023 03:12:47 GMT
+  recorded_at: Mon, 23 Jan 2023 15:45:03 GMT
 recorded_with: VCR 6.1.0

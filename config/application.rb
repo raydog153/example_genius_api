@@ -31,7 +31,7 @@ module ExampleGeniusApi3
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    Genius.text_format = "html"
-    Genius.access_token  = ENV['GENIUS_ACCESS_TOKEN']
+    Genius.text_format = "plain"
+    Genius.access_token = ENV['GENIUS_ACCESS_TOKEN']
   end
 end
